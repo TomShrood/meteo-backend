@@ -28,3 +28,9 @@ def primeste_date(statie_id: str, temperatura: float, umiditate: float, db: Sess
     db.add(date)
     db.commit()
     return {"status": "Date salvate!"}
+    
+@app.get("/api/date")
+def get_date(db: Session = Depends(get_db)):
+    date = db.query(DateMeteo).all()
+    return date
+
