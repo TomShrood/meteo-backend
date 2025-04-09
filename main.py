@@ -2,6 +2,7 @@ from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
 from database import SessionLocal, engine
 from models import Base, DateMeteo
+from schemas import DateInput  # <-- import nou
 
 Base.metadata.create_all(bind=engine)
 
@@ -19,11 +20,11 @@ def root():
     return {"message": "API-ul meteo funcționează! 🔥"}
 
 @app.post("/api/date")
-def primeste_date(statie_id: str, temperatura: float, umiditate: float, db: Session = Depends(get_db)):
+def primeste_date(data: DateInput, db: Session = Depends(get_db)):
     date = DateMeteo(
-        statie_id=statie_id,
-        temperatura=temperatura,
-        umiditate=umiditate
+        statie_id=data.statie_id,
+        temperatura=data.temperatura,
+        umiditate=data.umiditate
     )
     db.add(date)
     db.commit()
@@ -31,6 +32,4 @@ def primeste_date(statie_id: str, temperatura: float, umiditate: float, db: Sess
     
 @app.get("/api/date")
 def get_date(db: Session = Depends(get_db)):
-    date = db.query(DateMeteo).all()
-    return date
-
+    return db.query(DateMeteo).all()
