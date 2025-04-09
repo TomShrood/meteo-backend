@@ -14,6 +14,10 @@ def get_db():
     finally:
         db.close()
 
+@app.get("/")
+def root():
+    return {"message": "API-ul meteo funcționează! 🔥"}
+
 @app.post("/api/date")
 def primeste_date(statie_id: str, temperatura: float, umiditate: float, db: Session = Depends(get_db)):
     date = DateMeteo(
