@@ -24,8 +24,9 @@ def get_db():
         db.close()
 
 @app.get("/")
-def root():
-    return {"message": "API-ul meteo funcționează! 🔥"}
+def root(db: Session = Depends(get_db)):
+    return db.query(DateMeteo).all()
+
 
 @app.post("/api/date")
 def primeste_date(data: DateInput, db: Session = Depends(get_db)):
