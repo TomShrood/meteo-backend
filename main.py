@@ -6,7 +6,15 @@ from schemas import DateInput  # <-- import nou
 
 Base.metadata.create_all(bind=engine)
 
-app = FastAPI()
+app = FastAPI(
+    title="API Meteo",
+    description="API pentru colectarea și afișarea datelor meteo",
+    version="1.0",
+    docs_url="/docs",
+    redoc_url="/redoc",
+    openapi_url="/openapi.json"
+)
+
 
 def get_db():
     db = SessionLocal()
