@@ -2,19 +2,18 @@ from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
 from database import SessionLocal, engine
 from models import Base, DateMeteo
-from schemas import DateInput  # <-- import nou
+from schemas import DateInput
 
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title="API Meteo",
-    description="API pentru colectarea și afișarea datelor meteo",
+    description="Colectare și afișare date meteo",
     version="1.0",
     docs_url="/docs",
     redoc_url="/redoc",
     openapi_url="/openapi.json"
 )
-
 
 def get_db():
     db = SessionLocal()
@@ -37,7 +36,7 @@ def primeste_date(data: DateInput, db: Session = Depends(get_db)):
     db.add(date)
     db.commit()
     return {"status": "Date salvate!"}
-    
+
 @app.get("/api/date")
 def get_date(db: Session = Depends(get_db)):
     return db.query(DateMeteo).all()

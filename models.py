@@ -1,5 +1,4 @@
-from sqlalchemy import Column, Integer, Float, String, DateTime
-from sqlalchemy.sql import func
+from sqlalchemy import Column, Integer, String, Float
 from database import Base
 
 class DateMeteo(Base):
@@ -8,4 +7,3 @@ class DateMeteo(Base):
     statie_id = Column(String)
     temperatura = Column(Float)
     umiditate = Column(Float)
-    timestamp = Column(DateTime(timezone=True), server_default=func.now())
