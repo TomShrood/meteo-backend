@@ -7,4 +7,6 @@ services:
     plan: free
     envVars:
       - key: DATABASE_URL
-        value: postgresql://user:ilie@host.render.com:5432/meteo
+        value: postgresql://postgresdb:pirkK5ve8RSqHjtoEa67WVC2QramXT6x@dpg-cvrfh1mr433s73apu080-a.frankfurt-postgres.render.com/meteo_gv8d
+        
+        
