@@ -11,7 +11,7 @@ app = FastAPI(
     title="API Meteo",
     description="Colectare și afișare date meteo",
     version="1.0",
-    docs_url=None,  # Dezactivează documentația implicită
+    docs_url=None,  
     redoc_url=None,
     openapi_url="/openapi.json"
 )
@@ -43,7 +43,6 @@ def primeste_date(data: DateInput, db: Session = Depends(get_db)):
 def get_date(db: Session = Depends(get_db)):
     return db.query(DateMeteo).all()
 
-# ✅ Docs route fix pentru Render
 @app.get("/docs", include_in_schema=False)
 async def custom_swagger_ui_html(request: Request):
     root_path = request.scope.get("root_path", "").rstrip("/")
@@ -54,7 +53,6 @@ async def custom_swagger_ui_html(request: Request):
         swagger_favicon_url=None
     )
 
-# ✅ Redoc route fix pentru Render
 @app.get("/redoc", include_in_schema=False)
 async def custom_redoc_html(request: Request):
     root_path = request.scope.get("root_path", "").rstrip("/")
