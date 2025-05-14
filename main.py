@@ -33,7 +33,9 @@ def primeste_date(data: DateInput, db: Session = Depends(get_db)):
     date = DateMeteo(
         statie_id=data.statie_id,
         temperatura=data.temperatura,
-        umiditate=data.umiditate
+        umiditate=data.umiditate,
+        luminozitate=data.luminozitate,
+        presiune=data.presiune
     )
     db.add(date)
     db.commit()

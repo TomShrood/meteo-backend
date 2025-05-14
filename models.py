@@ -7,3 +7,5 @@ class DateMeteo(Base):
     statie_id = Column(String)
     temperatura = Column(Float)
     umiditate = Column(Float)
+    luminozitate = Column(Float)
+    presiune = Column(Float)
