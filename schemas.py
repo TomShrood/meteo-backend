@@ -6,3 +6,6 @@ class DateInput(BaseModel):
     umiditate: float
     luminozitate: float
     presiune: float
+    prognoza: str
+    sezon: str
+    locatie: str

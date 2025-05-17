@@ -9,3 +9,7 @@ class DateMeteo(Base):
     umiditate = Column(Float)
     luminozitate = Column(Float)
     presiune = Column(Float)
+    prognoza = Column(String)
+    timestamp = Column(DateTime, default=datetime.utcnow)
+    sezon = Column(String)
+    locatie = Column(String)
