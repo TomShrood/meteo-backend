@@ -1,5 +1,4 @@
-from sqlalchemy import Column, Integer, String, Float, DateTime
-from datetime import datetime
+from sqlalchemy import Column, Integer, String, Float
 from database import Base
 
 class DateMeteo(Base):
@@ -11,6 +10,7 @@ class DateMeteo(Base):
     luminozitate = Column(Float)
     presiune = Column(Float)
     prognoza = Column(String)
-    timestamp = Column(DateTime, default=datetime.utcnow)
     sezon = Column(String)
     locatie = Column(String)
+    ora = Column(String)
+    data = Column(String)

@@ -9,3 +9,5 @@ class DateInput(BaseModel):
     prognoza: str
     sezon: str
     locatie: str
+    ora: str
+    data: str
