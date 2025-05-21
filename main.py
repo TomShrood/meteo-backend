@@ -22,7 +22,7 @@ def get_db():
         yield db
     finally:
         db.close()
-
+        
 @app.get("/")
 def root(db: Session = Depends(get_db)):
     return db.query(DateMeteo).all()
@@ -49,6 +49,10 @@ def primeste_date(data: DateInput, db: Session = Depends(get_db)):
 @app.get("/api/date")
 def get_date(db: Session = Depends(get_db)):
     return db.query(DateMeteo).all()
+    
+@app.get("/api/date/ultimele/{n}")
+def get_ultimele_n(n: int, db: Session = Depends(get_db)):
+    return db.query(DateMeteo).order_by(DateMeteo.id.desc()).limit(n).all()[::-1]
 
 @app.get("/docs", include_in_schema=False)
 async def custom_swagger_ui_html(request: Request):
