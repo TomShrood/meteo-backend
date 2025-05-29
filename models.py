@@ -14,3 +14,4 @@ class DateMeteo(Base):
     locatie = Column(String)
     ora = Column(String)
     data = Column(String)
+    viteza_vant = Column(Float)

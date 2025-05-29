@@ -11,3 +11,4 @@ class DateInput(BaseModel):
     presiune: float
     luminozitate: float
     prognoza: str
+    viteza_vant: float
