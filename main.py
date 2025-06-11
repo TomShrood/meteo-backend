@@ -11,8 +11,6 @@ app = FastAPI(
     title="API Meteo",
     description="Colectare și afișare date meteo",
     version="1.0",
-    docs_url=None,  
-    redoc_url=None,
     openapi_url="/openapi.json"
 )
 
@@ -55,20 +53,3 @@ def get_date(db: Session = Depends(get_db)):
 def get_ultimele_n(n: int, db: Session = Depends(get_db)):
     return db.query(DateMeteo).order_by(DateMeteo.id.desc()).limit(n).all()[::-1]
 
-@app.get("/docs", include_in_schema=False)
-async def custom_swagger_ui_html(request: Request):
-    root_path = request.scope.get("root_path", "").rstrip("/")
-    return get_swagger_ui_html(
-        openapi_url=f"{root_path}/openapi.json",
-        title=f"{app.title} - Swagger UI",
-        oauth2_redirect_url=None,
-        swagger_favicon_url=None
-    )
-
-@app.get("/redoc", include_in_schema=False)
-async def custom_redoc_html(request: Request):
-    root_path = request.scope.get("root_path", "").rstrip("/")
-    return get_redoc_html(
-        openapi_url=f"{root_path}/openapi.json",
-        title=f"{app.title} - ReDoc"
-    )
